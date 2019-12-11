@@ -10,6 +10,7 @@ class QuestionModel(models.Model):
     question_desc = models.TextField()
     question_img = models.ImageField(upload_to="QuestionImg",blank=True, null=True)
     question_votes= models.IntegerField(default=0)
+    #objects=object.manager
 
     def __str__(self):
         return(self.question_desc)
