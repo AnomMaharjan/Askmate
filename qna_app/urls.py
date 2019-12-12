@@ -15,9 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import addquestion
+from .views import addquestion , update_question, questionlist, delete_question, QuestionModelCreateView,QuestionModelListView
+
+app_name='qna'
 
 urlpatterns = [
     path('addquestion/', addquestion, name='addquestion'),
-
+    path('update/<int:id>/',update_question,name="update"),
+    path('list/', questionlist, name="questionlist"),
+    path('delete/<int:id>', delete_question, name='delete'),
+    path('create/', QuestionModelCreateView.as_view(), name="create"),
+    path('listview/', QuestionModelListView.as_view(), name="listview"),
 ]

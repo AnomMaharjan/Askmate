@@ -3,6 +3,11 @@ from django.db import models
 # Create your models here.
 
 
+class CategoryModel(models.Model):
+    category_title = models.CharField(max_length=255)
+    category_description = models.TextField()
+
+
 class QuestionModel(models.Model):
     title = models.CharField(max_length=255)
     posted_by = models.CharField(max_length=120)
@@ -11,10 +16,10 @@ class QuestionModel(models.Model):
     question_img = models.ImageField(
         upload_to="QuestionImg", blank=True, null=True)
     question_votes = models.IntegerField(default=0)
-    category = models.ForeignKey(CategoryModel, on_delete=models.CASCADE)
+    category = models.ForeignKey(CategoryModel,on_delete=models.CASCADE)
 
     def __str__(self):
-        return(self.question_desc)
+        return(self.title)
 
 
 class AnswerModel(models.Model):
@@ -30,8 +35,3 @@ class AnswerModel(models.Model):
 
     def __str__(self):
         return(self.answer_desc)
-
-
-class CategoryModel(models.Model):
-    category_title = models.CharField(max_length=255)
-    category_description = models.TextField()
