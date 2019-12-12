@@ -74,7 +74,6 @@ class QuestionModelListView(ListView):
 
 def upvote(request,id):
     instance=QuestionModel.objects.get(id=id)
-    vote=instance.question_vote + 1
-    instance.question_vote =vote
+    instance.question_votes+= 1
     instance.save()
-    redirect("qna:questionlist")
+    return redirect("qna:questionlist")
