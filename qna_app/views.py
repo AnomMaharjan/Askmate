@@ -105,12 +105,6 @@ def addanswer(request, id):
 
 def ques_list(request):
     question=QuestionModel.objects.all()
-    # answers=AnswerModel.objects.filter(question=id)
-    # d={
-    #     "question":question,
-    #     # "answers": answers,
-    # }
-
     return render(request,"qna_app/ques_list.htm",{"question":question})
 
 def base(request):
@@ -118,9 +112,9 @@ def base(request):
 
 def ques_details(request,id):
     question=QuestionModel.objects.get(id=id)
-    answer = AnswerModel.objects.filter(answer=id)
+    answers = AnswerModel.objects.filter(question=id)
     d={
         "question":question,
-        "answer": answer,
+        "answers": answers,
     }
     return render(request, "qna_app/detail.htm", d)

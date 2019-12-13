@@ -1,2 +1,9 @@
 {%extends 'qna_app/base.htm'%} {%block title%} {{question.title}} {%endblock%}
-{%block main_body%} {{question:question_desc}} {%endfor%} {%endblock%}
+{%block main_body%}
+<h4>{{question.title}}</h4>
+<br />
+<h4>{{question.question_votes}}</h4>
+<br />
+<h4>{{question.posted_by}}</h4>
+<br />
+{%for a in answers%} {{a.answer_desc}} {%endfor%} {%endblock%}
