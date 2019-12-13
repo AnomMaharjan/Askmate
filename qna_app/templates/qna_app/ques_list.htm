@@ -7,6 +7,11 @@
 
 {%block main_body%}
 {%for q in question%}
+<div class="card">
+
+<div class="card-body">
     <a href="{%url 'qna:ques_details' q.id%}">{{q.question_desc}}</a><br>
-{%endfor%}
+</div>
+</div>
+    {%endfor%}
 {%endblock%}

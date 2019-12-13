@@ -118,10 +118,9 @@ def base(request):
 
 def ques_details(request,id):
     question=QuestionModel.objects.get(id=id)
-    answers = AnswerModel.objects.filter(answer=id)
+    answer = AnswerModel.objects.filter(answer=id)
     d={
         "question":question,
-        "answers": answers,
+        "answer": answer,
     }
-
-    return render(request, "qna_app/detal.htm", d)
+    return render(request, "qna_app/detail.htm", d)
