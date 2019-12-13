@@ -53,14 +53,18 @@ def update_question(request, id):
 
 
 def questionlist(request):
-    lists = QuestionModel.objects.all()
-    return render(request, "questionmodel_list.htm", {"question_list": lists})
+    if('id' in request.session):
+        lists = QuestionModel.objects.all()
+        return render(request, "questionmodel_list.htm", {"question_list": lists})
+    else:
+        return redirect("user:login")
 
 
 def delete_question(requests, id):
     question = QuestionModel.objects.get(id=id)
     question.delete()
     return redirect('qna:questionlist')
+
 
 
 class QuestionModelCreateView(CreateView):
@@ -82,12 +86,12 @@ def upvote(request, id):
 
 def details(request, id):
     questions = QuestionModel.objects.get(id=id)
-    answers= AnswerModel.objects.filter(question=id)
-    d={
-        "questions":questions,
-        "answers":answers,
+    answers = AnswerModel.objects.filter(question=id)
+    d = {
+        "questions": questions,
+        "answers": answers,
     }
-    return render(request, "questionmodel_detail.htm",d)
+    return render(request, "questionmodel_detail.htm", d)
 
 
 def addanswer(request, id):
@@ -97,3 +101,27 @@ def addanswer(request, id):
     answer = request.object.get('answerfield')
     AnswerModel.objects.create(question=question_instance,)
     return redirect("qna:questionlist")
+
+
+def ques_list(request):
+    question=QuestionModel.objects.all()
+    # answers=AnswerModel.objects.filter(question=id)
+    # d={
+    #     "question":question,
+    #     # "answers": answers,
+    # }
+
+    return render(request,"qna_app/ques_list.htm",{"question":question})
+
+def base(request):
+    return render(request, "qna_app/base.htm")
+
+def ques_details(request,id):
+    question=QuestionModel.objects.get(id=id)
+    answers = AnswerModel.objects.filter(answer=id)
+    d={
+        "question":question,
+        "answers": answers,
+    }
+
+    return render(request, "qna_app/detal.htm", d)

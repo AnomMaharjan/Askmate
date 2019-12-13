@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from qna_app import views
+from .views import LoginAuth,logout
 
-
+app_name='user'
 urlpatterns = [
-    
+    path('login/',LoginAuth, name="login"),
+    path('logout/',logout, name="logout"),
 ]

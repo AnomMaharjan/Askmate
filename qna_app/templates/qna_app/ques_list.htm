@@ -1,0 +1,12 @@
+{% extends 'qna_app/base.htm'%}
+
+
+{%block title%}
+    Question Page
+{%endblock%}
+
+{%block main_body%}
+{%for q in question%}
+    <a href="{%url 'qna:ques_details' q.id%}">{{q.question_desc}}</a><br>
+{%endfor%}
+{%endblock%}
