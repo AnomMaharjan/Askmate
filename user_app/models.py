@@ -1,3 +1,13 @@
 from django.db import models
+from django.core.validators import MinValueValidator
 
-# Create your models here.
+class UserModel(models.Model):
+    name=models.CharField(max_length=120)
+    address=models.CharField(max_length=120)
+    contact=models.CharField(max_length=10)
+    email= models.EmailField(max_length=120)
+    password = models.CharField(max_length=50)
+    reputation = models.PositiveIntegerField(validators=[MinValueValidator(1)]) #PositiveIntegerField rakhda ni huncha models.PositiveIntegerField(validators=[MinValue_validator(0)])
+
+    def __str__(self):
+        return(self.email)

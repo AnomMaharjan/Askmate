@@ -12,7 +12,7 @@ class QuestionForm(forms.ModelForm):
 #         model= CategoryForm
 #         fields='__all__'
 
-# class AnswerForm(forms.ModelForm):
-#     class Meta:
-#         model= AnswerForm
-#         fields='__all__'
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model= AnswerModel
+        fields='__all__'

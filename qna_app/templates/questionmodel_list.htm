@@ -7,12 +7,11 @@
     <title>Document</title>
   </head>
   <body>
-    Lists of question: {%for q in question_list%}
-
-    <h2>{{q.title}}</h2>
-    <h2>{{q.question_desc}}</h2>
-    <h3>{{q.timestamp}}</h3>
-    <h2>{{q.question_votes}}</h2>
+    Lists of questions: <br />
+    {%for q in question_list%} <h3>Question Title:<a href="{%url 'qna:detail' q.id%}">{{q.title}}</a></h3>
+    <h3>{{q.question_desc}}</h3>
+    <span style="font-size: 12px;">Posted on:{{q.timestamp}}</span>
+    Upvotes: <strong>{{q.question_votes}}</strong><br />
     <img
       src="../../media/{{q.question_img}}"
       width="200px"
@@ -22,10 +21,12 @@
       is
       an
       image
-    />
+    /><br>
     <a href="{%url 'qna:update' q.id%}"><button>Update</button></a>
     <a href="{%url 'qna:delete' q.id%}"><button>Delete</button></a>
-    <a href="{%url 'qna:upvote' q.id%}"><button>Upvote</button></a>
+    <a href="{%url 'qna:upvote' q.id%}"><button>Upvote</button></a><br />
+    <textarea rows="5" cols="100" placeholder="enter answer" name="answerfield"/></textarea>
+    <a href="{%url 'qna:addanswer' q.id%}"><button>Submit</button></a><br /><br />
     {%endfor%}
 
     <a href="{% url 'qna:addquestion' %}"><button>Add</button></a>
